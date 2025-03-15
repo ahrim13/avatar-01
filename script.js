@@ -1,8 +1,30 @@
-html2canvas(element).then(function (canvas) {
-  // <a> 요소를 만들고, 이미지 데이터를 변환해서 주소로 지정한다
-  const link = document.createElement("a");
-  link.href = canvas.toDataURL("image/png");
-  link.download = "avatar.png";
-  // <a> 태그를 자바스크립트로 클릭한다
-  link.click();
-});
+let currentAvatarKey = "tone";
+
+const avatarMenu = document.querySelector("#avatar-menu");
+const avatarSelectors = document.querySelectorAll(".avatar-selector");
+const avatarMenuItems = avatarMenu.querySelectorAll(".avatar-menu-item");
+
+avatarMenu.addEventListener("click", handleAvatarMenuClick);
+
+function updateAvatarMenu(avatarKey) {
+  for (const avatarSelector of avatarSelectors) {
+    avatarSelector.classList.toggle(
+      "active",
+      avatarSelector.dataset.avatarKey == avatarKey
+    );
+  }
+
+  for (const avatarMenuItem of avatarMenuItems) {
+    avatarMenuItem.classList.toggle(
+      "active",
+      avatarMenuItem.dataset.avatarKey === avatarKey
+    );
+  }
+}
+
+function handleAvatarMenuClick(e) {
+  const nextAvatarKey = e.target.dataset.avatarKey;
+  if (!nextAvatarKey) return;
+  currentAvatarKey = nextAvatarKey;
+  updateAvatarMenu(currentAvatarKey);
+}
