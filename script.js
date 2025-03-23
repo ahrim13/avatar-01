@@ -68,10 +68,11 @@ function handleAvatarSelectorClick(e) {
 }
 
 function handleSaveClick() {
-  html2canvas(avatar, { useCORS: true, scale: 2 }).then(function (canvas) {
+  html2canvas(avatar).then(function (canvas) {
     const link = document.createElement("a");
     link.href = canvas.toDataURL("image/png");
-    link.download = (userName || "avatar") + ".png"; //이름으로 저장
+    link.download = "avatar.png";
+
     link.click();
   });
 }
