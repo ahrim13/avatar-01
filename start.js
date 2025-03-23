@@ -11,5 +11,5 @@ document.getElementById("button").addEventListener("click", function (e) {
   }
 
   localStorage.setItem("userName", name);
-  window.location.href = "main.html";
+  window.location.href = "/avatar-01/main.html";
 });
