@@ -11,11 +11,14 @@ const avatarMenu = document.querySelector("#avatar-menu");
 const avatarSelectors = document.querySelectorAll(".avatar-selector");
 const avatarMenuItems = avatarMenu.querySelectorAll(".avatar-menu-item");
 const avatarImages = document.querySelectorAll(".avatar-image");
+const avatar = document.querySelector("#avatar");
+const saveButton = document.querySelector("#save-button");
 
 avatarMenu.addEventListener("click", handleAvatarMenuClick);
 for (const avatarSelector of avatarSelectors) {
   avatarSelector.addEventListener("click", handleAvatarSelectorClick);
 }
+saveButton.addEventListener("click", handleSaveClick);
 
 function updateAvatarMenu(avatarKey) {
   for (const avatarSelector of avatarSelectors) {
@@ -62,4 +65,13 @@ function handleAvatarSelectorClick(e) {
   const nextAvatarValue = e.target.dataset.avatarValue;
   if (!nextAvatarValue) return;
   updateAvatar(currentAvatarKey, nextAvatarValue);
+}
+
+function handleSaveClick() {
+  html2canvas(avatar, { useCORS: true, scale: 2 }).then(function (canvas) {
+    const link = document.createElement("a");
+    link.href = canvas.toDataURL("image/png");
+    link.download = (userName || "avatar") + ".png"; //이름으로 저장
+    link.click();
+  });
 }

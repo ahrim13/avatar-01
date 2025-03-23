@@ -1,20 +1,37 @@
+@primary-color: #8174a0;
+@bg-light: #f7f7f7;
+@avatar-border: #f0f0f0;
+@white: #ffffff;
+
+@padding-page: 24px;
+@button-padding: 13px 24px;
+
+.rounded-box(@radius: 13px) {
+  border-radius: @radius;
+  background-color: @avatar-border;
+  border: 4px solid @avatar-border;
+}
+
 * {
   box-sizing: border-box;
 }
+
 html {
   font-family: "Noto Sans KR", sans-serif;
   font-size: 16px;
 }
+
 body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
   background-image: url("./images/grid-bg.svg");
-  background-color: #f7f7f7;
+  background-color: @bg-light;
   background-repeat: repeat;
   background-position: -24px -24px;
-  padding: 24px;
+  padding: @padding-page;
 }
+
 .nav {
   display: flex;
   justify-content: flex-end;
@@ -22,31 +39,31 @@ body {
   max-width: 1280px;
   margin: 0 auto;
 }
+
 .button {
   display: inline-block;
-  padding: 13px 24px;
+  padding: @button-padding;
   border: none;
   border-radius: 9999px;
   font-weight: 600;
   cursor: pointer;
-  color: #ffffff;
-  background-color: #8174a0;
+  color: @white;
+  background-color: @primary-color;
 }
-.button:hover {
-  color: #ffd2a0;
-  background-color: #a888b5;
-}
+
 .container {
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 48px);
 }
+
 .preview {
   flex-grow: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 .avatar-container {
   width: 360px;
   height: 360px;
@@ -54,23 +71,24 @@ body {
   background-position: center center;
   background-size: contain;
 }
+
 .avatar {
   width: 100%;
   height: 100%;
   position: relative;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
 }
-.avatar > img {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  inset: 0;
-}
+
 .footer {
-  border-radius: 16px;
-  background-color: #f0f0f0;
-  border: 4px solid #f0f0f0;
-  border: 9px solid #ffffff;
-  background: #ffffff;
+  .rounded-box(16px);
+  border: 9px solid @white;
+  background: @white;
   margin-top: 24px;
   padding: 20px 8px 23px;
 }
